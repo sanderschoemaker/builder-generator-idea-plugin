@@ -50,7 +50,7 @@ public class CreateBuilderDialog extends DialogWrapper {
     static final String RECENTS_KEY = "CreateBuilderDialog.RecentsKey";
     private static final int WIDTH = 40;
 
-    private static BuilderGeneratorSettingsState defaultStates = BuilderGeneratorSettingsState.getInstance();
+    private final BuilderGeneratorSettingsState defaultStates = BuilderGeneratorSettingsState.getInstance();
 
     private final PsiHelper psiHelper;
     private final GuiHelper guiHelper;

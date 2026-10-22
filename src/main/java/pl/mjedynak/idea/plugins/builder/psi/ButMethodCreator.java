@@ -1,10 +1,10 @@
 package pl.mjedynak.idea.plugins.builder.psi;
 
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiParameterList;
-import org.apache.commons.lang3.StringUtils;
 import pl.mjedynak.idea.plugins.builder.settings.CodeStyleSettings;
 
 public class ButMethodCreator {
@@ -52,7 +52,7 @@ public class ButMethodCreator {
             if (useSingleField) {
                 text.append(srcClassFieldName)
                         .append(".get")
-                        .append(StringUtils.capitalize(parameterNameWithoutPrefix))
+                        .append(StringUtil.capitalize(parameterNameWithoutPrefix))
                         .append("()");
             } else {
                 text.append(fieldNamePrefix).append(parameterNameWithoutPrefix);

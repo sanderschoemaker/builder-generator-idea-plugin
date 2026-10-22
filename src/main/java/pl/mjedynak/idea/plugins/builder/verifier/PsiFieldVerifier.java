@@ -1,7 +1,6 @@
 package pl.mjedynak.idea.plugins.builder.verifier;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiField;
 import com.intellij.psi.PsiMethod;
@@ -9,7 +8,6 @@ import com.intellij.psi.PsiModifier;
 import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.PsiParameter;
 import com.intellij.psi.PsiParameterList;
-import org.apache.commons.text.WordUtils;
 import pl.mjedynak.idea.plugins.builder.settings.CodeStyleSettings;
 
 public class PsiFieldVerifier {
@@ -84,8 +82,8 @@ public class PsiFieldVerifier {
 
     private boolean methodHaProperPrefixAndProperName(PsiField psiField, PsiMethod method, String prefix) {
         String fieldNamePrefix = codeStyleSettings.getFieldNamePrefix();
-        String fieldNameWithoutPrefix = psiField.getName().replace(fieldNamePrefix, EMPTY);
-        return method.getName().equals(prefix + WordUtils.capitalize(fieldNameWithoutPrefix));
+        String fieldNameWithoutPrefix = psiField.getName().replace(fieldNamePrefix, "");
+        return method.getName().equals(prefix + StringUtil.capitalize(fieldNameWithoutPrefix));
     }
 
     private boolean modifierListHasNoPrivateModifier(PsiModifierList modifierList) {

@@ -1,7 +1,7 @@
 package pl.mjedynak.idea.plugins.builder.psi;
 
-import static org.apache.commons.lang3.StringUtils.capitalize;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static com.intellij.openapi.util.text.StringUtil.capitalize;
+import static com.intellij.openapi.util.text.StringUtil.isEmpty;
 
 public class MethodNameCreator {
 

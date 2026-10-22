@@ -2,6 +2,7 @@ package pl.mjedynak.idea.plugins.builder.psi;
 
 import static com.intellij.openapi.util.text.StringUtil.isVowel;
 
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
@@ -17,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import org.apache.commons.lang3.StringUtils;
 import pl.mjedynak.idea.plugins.builder.settings.CodeStyleSettings;
 import pl.mjedynak.idea.plugins.builder.verifier.PsiFieldVerifier;
 import pl.mjedynak.idea.plugins.builder.writer.BuilderContext;
@@ -78,7 +78,7 @@ public class BuilderPsiClassBuilder {
         srcClass = context.getPsiClassFromEditor();
         builderClassName = context.getClassName();
         srcClassName = context.getPsiClassFromEditor().getName();
-        srcClassFieldName = StringUtils.uncapitalize(srcClassName);
+        srcClassFieldName = Character.toLowerCase(srcClassName.charAt(0)) + srcClassName.substring(1);
         psiFieldsForSetters = context.getPsiFieldsForBuilder().getFieldsForSetters();
         psiFieldsForConstructor = context.getPsiFieldsForBuilder().getFieldsForConstructor();
         allSelectedPsiFields = context.getPsiFieldsForBuilder().getAllSelectedFields();
@@ -239,7 +239,7 @@ public class BuilderPsiClassBuilder {
             String fieldNamePrefix = codeStyleSettings.getFieldNamePrefix();
             String fieldName = psiFieldsForSetter.getName();
             String fieldNameWithoutPrefix = fieldName.replaceFirst(fieldNamePrefix, "");
-            String fieldNameUppercase = StringUtils.capitalize(fieldNameWithoutPrefix);
+            String fieldNameUppercase = StringUtil.capitalize(fieldNameWithoutPrefix);
             buildMethodText
                     .append(srcClassFieldName)
                     .append(".set")
